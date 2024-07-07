@@ -1,0 +1,1 @@
+DELETE_USER_QUERY = "DELETE FROM users WHERE user_id = %s"

@@ -1,0 +1,18 @@
+[flake8]
+
+ignore = E203, E266, E501, W503, F401
+max-complexity = 10
+max-line-length = 88
+exclude =
+    .git,
+    __pycache__,
+    build,
+    dist,
+    .venv,
+    .tox,
+    .eggs,
+    *.egg,
+    venv,
+    .env,
+    /tests
+output-file = flake8_report.txt
