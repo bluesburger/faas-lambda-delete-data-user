@@ -5,7 +5,6 @@ resource "aws_lambda_function" "lambda_faas_delete_user_data" {
   role          = aws_iam_role.lambda_role.arn
   filename      = "${path.root}/../deploy/lambda_function.zip"
   environment {
-    variables = {
-    }
+    variables = local.environment_variables
   }
 }

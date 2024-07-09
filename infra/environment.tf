@@ -1,3 +1,9 @@
+variable "region_provider_aws" {
+  type = string
+  description = "region aws"
+  default = "us-east-1"
+}
+
 variable "function_name" {
   type = string
   description = "Nome da função lambda"
@@ -16,14 +22,14 @@ variable "function_runtime" {
   default = "python3.11"
 }
 
-variable "user_pool_id_cognito" {
-  type = string
-  description = "id de usuario cognito"
-  default = "{{preencher}}"
-}
-
 variable "table_name_payment_dynamodb" {
   type = string
   description = "nome da tabela de pagamentos no dynamodb"
   default = "payment"
+}
+
+variable "secret_name_credentials_db" {
+  type = string
+  description = "nome do secret que armazena as credenciais"
+  default = "/secret/RDSCredentials"
 }
