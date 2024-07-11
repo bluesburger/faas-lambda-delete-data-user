@@ -1,6 +1,6 @@
 from aws_lambda_powertools import Logger
 
-from app.src.delete_data_service import delete_data_user
+from src.delete_data_service import delete_data_user
 
 logger = Logger()
 

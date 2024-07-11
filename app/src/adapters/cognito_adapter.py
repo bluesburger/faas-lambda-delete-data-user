@@ -6,21 +6,20 @@ from botocore.exceptions import ClientError
 
 logger = Logger()
 
-USER_POOL_ID = os.getenv('USER_POOL_ID')
 cognito_client = boto3.client('cognito-idp')
 
 
 def delete_data_from_cognito(username):
-    logger.info(f'Deleting user: {username} from cognito user pool: {USER_POOL_ID}')
+    user_pool_id = os.getenv('USER_POOL_ID')
+
+    logger.info(f'Deleting user: {username} from cognito user pool: {user_pool_id}')
     try:
         cognito_client.admin_delete_user(
-            UserPoolId=USER_POOL_ID,
+            UserPoolId=user_pool_id,
             Username=username
         )
-        logger.info(f'User excluded with success: {username} from cognito user pool: {USER_POOL_ID}')
+        logger.info(f'User excluded with success: {username} from cognito user pool: {user_pool_id}')
     except ClientError as e:
         logger.error(f'Error deleting: {e.response["Error"]["Message"]}')
-        return {'status': {e.response["Error"]["Message"]['error_code']}, 'message': str(e)}
-    except cognito_client.exceptions.UserNotFoundException as e:
-        logger.error(f'Error deleting: {e.response["Error"]["Message"]}')
-        return {'status': 404, 'message': str(e)}
+        return {'status': {e.response["Error"]["Code"]}, 'message': str(e)}
+

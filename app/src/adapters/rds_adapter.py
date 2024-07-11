@@ -10,16 +10,14 @@ from src.adapters.utils.queries import DELETE_USER_QUERY
 
 logger = Logger()
 
-secret_name = os.getenv('SECRET_NAME')
-
 
 def delete_data_from_sqldb(user_id):
-    credenciais_db = recuperar_segredo(secret_name)
+    credenciais_db = recuperar_segredo(os.getenv('SECRET_NAME'))
 
     try:
         with open_connection_with_db(credenciais_db) as db_connection:
             with db_connection.cursor() as cursor:
-                cursor.execute(DELETE_USER_QUERY, user_id)
+                cursor.execute(DELETE_USER_QUERY, (user_id,))
                 db_connection.commit()
     except mysql.MySQLError as e:
         logger.error(f"MySQL error: {e}")
