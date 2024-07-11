@@ -2,3 +2,4 @@ boto3>=1.28.0
 aws-lambda-powertools>=1.29.0
 pytest==6.2.4
 pytest-cov==3.0.0
+pymysql==1.1.1
